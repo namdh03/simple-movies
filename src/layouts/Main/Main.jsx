@@ -6,11 +6,7 @@ const Main = ({ children }) => {
     return (
         <Fragment>
             <Header></Header>
-            <main>
-                <div className="w-[750px] max-w-[calc(100%-48px)] mx-auto">
-                    {children}
-                </div>
-            </main>
+            <main>{children}</main>
         </Fragment>
     );
 };

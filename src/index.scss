@@ -9,3 +9,11 @@
         @apply font-body bg-slate-900 text-white;
     }
 }
+
+@layer components {
+    .page-container {
+        width: 1280px;
+        max-width: calc(100% - 48px);
+        @apply mx-auto;
+    }
+}
