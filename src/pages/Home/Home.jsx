@@ -12,7 +12,7 @@ const Home = () => {
                     <h2 className="capitalize text-white mb-10 text-3xl font-bold">
                         Now playing
                     </h2>
-                    <MovieList></MovieList>
+                    <MovieList type="now_playing"></MovieList>
                 </div>
             </section>
             <section className="pb-20">
@@ -20,7 +20,7 @@ const Home = () => {
                     <h2 className="capitalize text-white mb-10 text-3xl font-bold">
                         Top rated
                     </h2>
-                    <MovieList></MovieList>
+                    <MovieList type="top_rated"></MovieList>
                 </div>
             </section>
             <section className="pb-20">
@@ -28,7 +28,7 @@ const Home = () => {
                     <h2 className="capitalize text-white mb-10 text-3xl font-bold">
                         Trending
                     </h2>
-                    <MovieList></MovieList>
+                    <MovieList type="popular"></MovieList>
                 </div>
             </section>
         </Fragment>

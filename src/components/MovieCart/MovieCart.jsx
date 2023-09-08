@@ -1,26 +1,36 @@
-const MovieCart = () => {
+import PropTypes from "prop-types";
+
+const MovieCart = ({ movie }) => {
+    const { title, release_date, backdrop_path, vote_average } = movie;
+
     return (
-        <article className="p-3 bg-slate-800 rounded-lg">
+        <article className="flex flex-col h-full p-3 bg-slate-800 rounded-lg select-none">
             <figure className="h-[250px]">
                 <img
-                    src="https://genk.mediacdn.vn/139269124445442048/2020/2/14/1-15816746144451193748082.jpg"
+                    src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
                     alt=""
                     className="w-full h-full object-cover rounded-lg"
                 />
             </figure>
 
-            <h3 className="mt-5 text-xl font-bold">Spiderman: Homecoming</h3>
+            <div className="flex flex-col flex-1">
+                <h3 className="mt-5 text-xl font-bold">{title}</h3>
 
-            <div className="mt-3 flex items-center justify-between text-sm opacity-50">
-                <span>2017</span>
-                <span>7.4</span>
+                <div className="mt-3 mb-10 flex items-center justify-between text-sm opacity-50">
+                    <span>{new Date(release_date).getFullYear()}</span>
+                    <span>{vote_average}</span>
+                </div>
+
+                <button className="mt-auto flex items-center justify-center w-full h-12 leading-12 p-4 bg-primary rounded-lg">
+                    Watch Now
+                </button>
             </div>
-
-            <button className="mt-10 flex items-center justify-center w-full h-12 leading-12 p-4 bg-primary rounded-lg">
-                Watch Now
-            </button>
         </article>
     );
+};
+
+MovieCart.propTypes = {
+    movie: PropTypes.object,
 };
 
 export default MovieCart;
