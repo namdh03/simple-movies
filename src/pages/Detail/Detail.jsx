@@ -1,12 +1,81 @@
 import { useParams } from "react-router-dom";
+import useSWR from "swr";
+import configs from "../../configs";
 
 const Detail = () => {
-    const movieId = useParams();
-    console.log(movieId);
+    const { movieId } = useParams();
+    const { data } = useSWR(
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${configs.apiKeys.TMDB_API_KEY}&language=en-US`,
+        configs.fetcher
+    );
+
+    if (!data) return null;
+    const { backdrop_path, poster_path, title, genres, overview } = data;
 
     return (
         <section>
-            <div className="page-container">Hello</div>
+            <div className="page-container">
+                <div className="relative w-full h-[846px]">
+                    <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+
+                    <div
+                        className="w-full h-full bg-cover bg-center"
+                        style={{
+                            backgroundImage: `url(
+                            https://image.tmdb.org/t/p/original/${backdrop_path}
+                        )`,
+                        }}
+                    ></div>
+                </div>
+
+                <figure className="relative w-[986px] h-[507px] mx-auto -mt-[calc(507px/2)]">
+                    <img
+                        src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+                        alt=""
+                        className="w-full h-full object-cover"
+                    />
+                </figure>
+
+                <h1 className="mt-14 text-white text-center text-5xl font-semibold">
+                    {title}
+                </h1>
+
+                {genres.length > 0 && (
+                    <ul className="mt-14 flex items-center justify-center gap-x-[38px]">
+                        {genres.map((genre) => (
+                            <li
+                                key={genre.id}
+                                className="flex items-center justify-center min-w-[141px] h-12 leading-[48px] p-[10px]
+                                border border-solid border-[#7D6AFF] rounded-[99px] cursor-pointer"
+                            >
+                                <span className="text-[#7D6AFF] text-lg font-semibold leading-[1.55556]">
+                                    {genre.name}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+
+                <p className="mt-14 text-white text-center text-base leading-[1.75]">
+                    {overview}
+                </p>
+
+                <div className="mt-24 text-center">
+                    <h2 className="text-white text-4xl font-semibold leading-[0.77778]">
+                        Casts
+                    </h2>
+
+                    <ul className="mt-14 flex items-center justify-center gap-x-8">
+                        <li>
+                            <article>
+                                <figure className="w-[211px] h-[270px]">
+                                    <img src="" alt="" />
+                                </figure>
+                            </article>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </section>
     );
 };
