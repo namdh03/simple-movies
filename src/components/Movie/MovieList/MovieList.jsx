@@ -4,8 +4,8 @@ import useSWR from "swr";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
 
-import configs from "../../configs";
-import MovieCart from "../../components/MovieCart";
+import configs from "../../../configs";
+import MovieCart from "../MovieCart";
 
 const MovieList = ({ type = "now_playing" }) => {
     const [movies, setMovies] = useState([]);

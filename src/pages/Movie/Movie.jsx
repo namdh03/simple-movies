@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 import configs from "../../configs";
-import MovieCart from "../../components/MovieCart";
+import { MovieCart } from "../../components/Movie";
 
 const Movie = () => {
     const [movies, setMovies] = useState([]);

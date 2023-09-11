@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import configs from "../../configs";
+import { MovieClips, MovieCredits } from "../../components/Movie";
 
 const Detail = () => {
     const { movieId } = useParams();
@@ -45,10 +46,10 @@ const Detail = () => {
                         {genres.map((genre) => (
                             <li
                                 key={genre.id}
-                                className="flex items-center justify-center min-w-[141px] h-12 leading-[48px] p-[10px]
-                                border border-solid border-[#7D6AFF] rounded-[99px] cursor-pointer"
+                                className="flex items-center justify-center min-w-[141px] h-12 leading-[48px] px-6 py-[10px]
+                                border border-solid border-primary rounded-[99px] cursor-pointer"
                             >
-                                <span className="text-[#7D6AFF] text-lg font-semibold leading-[1.55556]">
+                                <span className="text-primary text-lg font-semibold leading-[1.55556]">
                                     {genre.name}
                                 </span>
                             </li>
@@ -65,15 +66,9 @@ const Detail = () => {
                         Casts
                     </h2>
 
-                    <ul className="mt-14 flex items-center justify-center gap-x-8">
-                        <li>
-                            <article>
-                                <figure className="w-[211px] h-[270px]">
-                                    <img src="" alt="" />
-                                </figure>
-                            </article>
-                        </li>
-                    </ul>
+                    <MovieCredits></MovieCredits>
+
+                    <MovieClips></MovieClips>
                 </div>
             </div>
         </section>
