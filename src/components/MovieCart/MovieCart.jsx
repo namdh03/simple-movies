@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 const MovieCart = ({ movie }) => {
-    const { title, release_date, backdrop_path, vote_average } = movie;
+    const { id, title, release_date, backdrop_path, vote_average } = movie;
+    const navigate = useNavigate();
 
     return (
         <article className="flex flex-col h-full p-3 bg-slate-800 rounded-lg select-none">
@@ -21,7 +23,10 @@ const MovieCart = ({ movie }) => {
                     <span>{vote_average}</span>
                 </div>
 
-                <button className="mt-auto flex items-center justify-center w-full h-12 leading-12 p-4 bg-primary rounded-lg">
+                <button
+                    onClick={() => navigate(`movie/${id}`)}
+                    className="mt-auto flex items-center justify-center w-full h-12 leading-12 p-4 bg-primary rounded-lg"
+                >
                     Watch Now
                 </button>
             </div>
