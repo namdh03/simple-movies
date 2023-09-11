@@ -4,11 +4,9 @@ import configs from "../../configs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
 
-const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-
 const Banner = () => {
     const { data } = useSWR(
-        `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`,
+        `https://api.themoviedb.org/3/movie/upcoming?api_key=${configs.apiKeys.TMDB_API_KEY}&language=en-US&page=1`,
         configs.fetcher
     );
     const movies = data?.results || [];
