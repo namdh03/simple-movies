@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const BannerItem = ({ movie }) => {
-    const { backdrop_path } = movie;
+    const { backdrop_path, title } = movie;
 
     return (
         <div className="relative">
@@ -14,7 +14,7 @@ const BannerItem = ({ movie }) => {
                 />
             </figure>
             <div className="absolute left-5 bottom-5 w-full text-white">
-                <h2 className="font-bold text-3xl">Avengers: Endgame</h2>
+                <h2 className="font-bold text-3xl drop-shadow-xl">{title}</h2>
                 <ul className="flex items-center gap-x-3 mt-5 mb-8">
                     <li className="py-2 px-4 border border-white rounded-md">
                         Adventure
