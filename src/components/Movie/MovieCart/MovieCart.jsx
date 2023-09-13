@@ -19,7 +19,7 @@ const MovieCart = ({ movie }) => {
                 <h3 className="mt-5 text-xl font-bold">{title}</h3>
 
                 <div className="mt-3 mb-10 flex items-center justify-between text-sm opacity-50">
-                    <span>{new Date(release_date).getFullYear()}</span>
+                    <span>{new Date(release_date)?.getFullYear()}</span>
                     <span>{vote_average}</span>
                 </div>
 

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import configs from "../../configs";
-import { MovieClips, MovieCredits } from "../../components/Movie";
+import { MovieClips, MovieCredits, MovieSimilar } from "../../components/Movie";
 
 const Detail = () => {
     const { movieId } = useParams();
@@ -69,6 +69,8 @@ const Detail = () => {
                     <MovieCredits></MovieCredits>
 
                     <MovieClips></MovieClips>
+
+                    <MovieSimilar></MovieSimilar>
                 </div>
             </div>
         </section>

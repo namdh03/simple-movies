@@ -14,7 +14,7 @@ const MovieClips = () => {
     const { results } = data;
 
     return (
-        <section className="mt-10">
+        <section className="mt-20">
             <div className="page-container">
                 <div className="flex flex-col gap-10">
                     {results.slice(0, 2).map((item) => (
