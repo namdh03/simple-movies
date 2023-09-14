@@ -16,4 +16,14 @@
         max-width: calc(100% - 48px);
         @apply mx-auto;
     }
+
+    .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        .selected {
+            @apply text-primary;
+        }
+    }
 }

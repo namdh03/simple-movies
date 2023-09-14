@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 import useSWR from "swr";
+import ReactPaginate from "react-paginate";
 
 import configs from "../../configs";
 import { MovieCart } from "../../components/Movie";
 import { useDebounce } from "../../hooks";
 
+const itemsPerPage = 20;
 const Movie = () => {
-    const [movies, setMovies] = useState([]);
+    const [pageCount, setPageCount] = useState(0);
+    const [itemOffset, setItemOffset] = useState(0);
+    const [nextPage, setNextPage] = useState(1);
     const [url, setUrl] = useState(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${configs.apiKeys.TMDB_API_KEY}&language=en-US&page=1`
+        `https://api.themoviedb.org/3/movie/popular?api_key=${configs.apiKeys.TMDB_API_KEY}&language=en-US&page=${nextPage}`
     );
     const { data, error } = useSWR(url, configs.fetcher);
     const loading = !data && !error;
@@ -16,18 +20,29 @@ const Movie = () => {
     const searchDebounceValue = useDebounce(searchValue);
 
     useEffect(() => {
-        if (data && data.results) {
-            setMovies(data.results);
-        }
-    }, [data]);
-
-    useEffect(() => {
         if (searchDebounceValue) {
             setUrl(
-                `https://api.themoviedb.org/3/search/movie?api_key=${configs.apiKeys.TMDB_API_KEY}&query=${searchDebounceValue}&include_adult=false&language=en-US&page=1`
+                `https://api.themoviedb.org/3/search/movie?api_key=${configs.apiKeys.TMDB_API_KEY}&query=${searchDebounceValue}&language=en-US&page=${nextPage}`
+            );
+        } else {
+            setUrl(
+                `https://api.themoviedb.org/3/movie/popular?api_key=${configs.apiKeys.TMDB_API_KEY}&language=en-US&page=${nextPage}`
             );
         }
-    }, [searchDebounceValue]);
+    }, [searchDebounceValue, nextPage]);
+
+    const movies = data?.results || [];
+
+    useEffect(() => {
+        if (!data || !data.total_results) return;
+        setPageCount(Math.ceil(data.total_results / itemsPerPage));
+    }, [data, itemOffset]);
+
+    const handlePageClick = (event) => {
+        const newOffset = (event.selected * itemsPerPage) % data.total_results;
+        setItemOffset(newOffset);
+        setNextPage(event.selected + 1);
+    };
 
     return (
         <section>
@@ -74,45 +89,16 @@ const Movie = () => {
                     </div>
                 )}
 
-                <div className="my-10 flex items-center justify-center gap-x-6">
-                    <span className="px-4 py-2 cursor-pointer">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            className="w-6 h-6"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
-                            />
-                        </svg>
-                    </span>
-                    <ul className="flex items-center justify-center">
-                        <li className="flex items-center justify-center px-4 py-2 bg-white text-slate-900 rounded cursor-pointer">
-                            1
-                        </li>
-                    </ul>
-                    <span className="px-4 py-2 cursor-pointer">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            className="w-6 h-6"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                            />
-                        </svg>
-                    </span>
-                </div>
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel="next >"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={pageCount}
+                    previousLabel="< previous"
+                    renderOnZeroPageCount={null}
+                    className="my-20 pagination"
+                />
             </div>
         </section>
     );
