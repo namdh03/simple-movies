@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import configs from "@/configs";
+import Button from "@/components/Button";
 
 const MovieCart = ({ movie }) => {
     const { id, title, release_date, backdrop_path, vote_average } = movie;
@@ -9,11 +11,7 @@ const MovieCart = ({ movie }) => {
         <article className="flex flex-col h-full p-3 bg-slate-800 rounded-lg select-none">
             <figure className="h-[250px]">
                 <img
-                    src={`${
-                        backdrop_path
-                            ? `https://image.tmdb.org/t/p/w500/${backdrop_path}`
-                            : "https://static.vecteezy.com/system/resources/previews/005/502/524/original/cinema-background-concept-movie-theater-object-on-red-curtain-background-and-movie-time-with-electric-bulbs-frame-illustration-free-vector.jpg"
-                    }`}
+                    src={configs.tmdbAPI.getImage(backdrop_path, "w500")}
                     alt=""
                     className="w-full h-full object-cover rounded-lg"
                 />
@@ -31,12 +29,12 @@ const MovieCart = ({ movie }) => {
                     <span>{vote_average}</span>
                 </div>
 
-                <button
-                    onClick={() => navigate(`movie/${id}`)}
-                    className="mt-auto flex items-center justify-center w-full h-12 leading-12 p-4 bg-primary rounded-lg"
+                <Button
+                    bgColor="secondary"
+                    onClick={() => navigate(`/movie/${id}`)}
                 >
                     Watch Now
-                </button>
+                </Button>
             </div>
         </article>
     );

@@ -1,9 +1,9 @@
-import configs from "../configs";
+import configs from "@/configs";
 
-import Main from "../layouts/Main/Main";
-import Home from "../pages/Home";
-import Movie from "../pages/Movie";
-import Detail from "../pages/Detail";
+import Main from "@/layouts/Main";
+import Home from "@/pages/Home";
+import Movie from "@/pages/Movie";
+import Detail from "@/pages/Detail";
 
 const publicRoutes = [
     { id: 1, path: configs.routes.home, component: Home, layout: Main },

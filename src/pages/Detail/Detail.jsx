@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import configs from "../../configs";
-import { MovieClips, MovieCredits, MovieSimilar } from "../../components/Movie";
+import configs from "@/configs";
+import { MovieClips, MovieCredits, MovieSimilar } from "@/components/Movie";
 
 const Detail = () => {
     const { movieId } = useParams();
     const { data } = useSWR(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${configs.apiKeys.TMDB_API_KEY}&language=en-US`,
+        configs.tmdbAPI.getMovieDetail(movieId),
         configs.fetcher
     );
 
@@ -23,7 +23,7 @@ const Detail = () => {
                         className="w-full h-full bg-cover bg-center"
                         style={{
                             backgroundImage: `url(
-                            https://image.tmdb.org/t/p/original/${backdrop_path}
+                            ${configs.tmdbAPI.getImage(backdrop_path)}
                         )`,
                         }}
                     ></div>
@@ -31,7 +31,7 @@ const Detail = () => {
 
                 <figure className="relative w-[986px] h-[507px] mx-auto -mt-[calc(507px/2)]">
                     <img
-                        src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+                        src={configs.tmdbAPI.getImage(poster_path)}
                         alt=""
                         className="w-full h-full object-cover"
                     />

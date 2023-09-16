@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import configs from "../../configs";
+import configs from "@/configs";
 
 const Header = () => {
     return (

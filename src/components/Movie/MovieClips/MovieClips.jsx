@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import configs from "../../../configs";
+import configs from "@/configs";
 
 const MovieClips = () => {
     const { movieId } = useParams();
     const { data } = useSWR(
-        `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${configs.apiKeys.TMDB_API_KEY}&language=en-US`,
+        configs.tmdbAPI.getMovieMeta("videos", movieId),
         configs.fetcher
     );
 

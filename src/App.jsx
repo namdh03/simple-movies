@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { publicRoutes } from "./routes/routes";
+import { publicRoutes } from "@/routes/routes";
 import { Fragment } from "react";
 
 const App = () => {

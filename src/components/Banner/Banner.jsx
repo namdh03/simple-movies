@@ -1,12 +1,13 @@
 import useSWR from "swr";
-import configs from "../../configs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
+
+import configs from "@/configs";
 import BannerItem from "./BannerItem";
 
 const Banner = () => {
     const { data } = useSWR(
-        `https://api.themoviedb.org/3/movie/upcoming?api_key=${configs.apiKeys.TMDB_API_KEY}&language=en-US&page=1`,
+        configs.tmdbAPI.getMovieList("upcoming"),
         configs.fetcher
     );
     const movies = data?.results || [];

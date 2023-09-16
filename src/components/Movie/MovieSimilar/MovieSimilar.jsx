@@ -2,13 +2,13 @@ import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
-import configs from "../../../configs";
-import MovieCart from "../MovieCart";
+import configs from "@/configs";
+import MovieCart from "@/components/Movie/MovieCart";
 
 const MovieSimilar = () => {
     const { movieId } = useParams();
     const { data } = useSWR(
-        `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${configs.apiKeys.TMDB_API_KEY}&language=en-US`,
+        configs.tmdbAPI.getMovieMeta("similar", movieId),
         configs.fetcher
     );
 

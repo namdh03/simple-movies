@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import configs from "../../../configs";
+import configs from "@/configs";
 
 const MovieCredits = () => {
     const { movieId } = useParams();
     const { data } = useSWR(
-        `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${configs.apiKeys.TMDB_API_KEY}&language=en-US`,
+        configs.tmdbAPI.getMovieMeta("credits", movieId),
         configs.fetcher
     );
 
@@ -21,7 +21,9 @@ const MovieCredits = () => {
                         <article>
                             <figure className="h-[270px]">
                                 <img
-                                    src={`https://image.tmdb.org/t/p/original/${item.profile_path}`}
+                                    src={configs.tmdbAPI.getImage(
+                                        item.profile_path
+                                    )}
                                     alt=""
                                     className="block w-full h-full object-cover rounded-lg select-none"
                                 />

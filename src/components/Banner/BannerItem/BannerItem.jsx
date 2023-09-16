@@ -1,14 +1,18 @@
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+import configs from "@/configs";
+import Button from "@/components/Button";
 
 const BannerItem = ({ movie }) => {
-    const { backdrop_path, title } = movie;
+    const { backdrop_path, title, id } = movie;
+    const navigate = useNavigate();
 
     return (
         <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)] rounded-lg"></div>
             <figure className="w-full h-[500px]">
                 <img
-                    src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
+                    src={configs.tmdbAPI.getImage(backdrop_path)}
                     alt=""
                     className="block w-full h-full object-cover object-bottom rounded-lg"
                 />
@@ -26,9 +30,10 @@ const BannerItem = ({ movie }) => {
                         Adventure
                     </li>
                 </ul>
-                <button className="inline-flex items-center justify-center min-w-[130px] h-[46px] leading-[46px] p-2 font-semibold bg-primary rounded-lg">
+
+                <Button onClick={() => navigate(`movie/${id}`)}>
                     Watch Now
-                </button>
+                </Button>
             </div>
         </div>
     );

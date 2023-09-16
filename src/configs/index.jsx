@@ -1,11 +1,11 @@
 import routes from "./routes";
 import fetcher from "./fetcher";
-import apiKeys from "./apiKeys";
+import tmdbAPI from "./tmdbAPI";
 
 const configs = {
     routes,
     fetcher,
-    apiKeys,
+    tmdbAPI,
 };
 
 export default configs;

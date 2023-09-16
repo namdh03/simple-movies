@@ -1,6 +1,6 @@
 import { Fragment } from "react";
-import Banner from "../../components/Banner";
-import { MovieList } from "../../components/Movie";
+import Banner from "@/components/Banner";
+import { MovieList } from "@/components/Movie";
 
 const Home = () => {
     return (
