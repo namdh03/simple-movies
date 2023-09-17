@@ -19,7 +19,7 @@ const Banner = () => {
                     {movies.length > 0 &&
                         movies.map((movie) => (
                             <SwiperSlide key={movie.id} className="h-auto">
-                                <BannerItem movie={movie}></BannerItem>
+                                <BannerItem movie={movie} />
                             </SwiperSlide>
                         ))}
                 </Swiper>

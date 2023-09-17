@@ -1,37 +1,40 @@
-import { Fragment } from "react";
 import Banner from "@/components/Banner";
 import { MovieList } from "@/components/Movie";
 
 const Home = () => {
-    return (
-        <Fragment>
-            <Banner></Banner>
+    const movieLists = [
+        {
+            id: 1,
+            title: "Now playing",
+            type: "now_playing",
+        },
+        {
+            id: 2,
+            title: "Top rated",
+            type: "top_rated",
+        },
+        {
+            id: 3,
+            title: "Trending",
+            type: "popular",
+        },
+    ];
 
-            <section className="pb-20">
-                <div className="page-container">
-                    <h2 className="capitalize text-white mb-10 text-3xl font-bold">
-                        Now playing
-                    </h2>
-                    <MovieList type="now_playing"></MovieList>
-                </div>
-            </section>
-            <section className="pb-20">
-                <div className="page-container">
-                    <h2 className="capitalize text-white mb-10 text-3xl font-bold">
-                        Top rated
-                    </h2>
-                    <MovieList type="top_rated"></MovieList>
-                </div>
-            </section>
-            <section className="pb-20">
-                <div className="page-container">
-                    <h2 className="capitalize text-white mb-10 text-3xl font-bold">
-                        Trending
-                    </h2>
-                    <MovieList type="popular"></MovieList>
-                </div>
-            </section>
-        </Fragment>
+    return (
+        <>
+            <Banner />
+
+            {movieLists.map((movie) => (
+                <section key={movie.id} className="pb-20">
+                    <div className="page-container">
+                        <h2 className="capitalize text-white mb-10 text-3xl font-bold">
+                            {movie.title}
+                        </h2>
+                        <MovieList type={movie.type} />
+                    </div>
+                </section>
+            ))}
+        </>
     );
 };
 

@@ -20,15 +20,14 @@ const BannerItem = ({ movie }) => {
             <div className="absolute left-5 bottom-5 w-full text-white">
                 <h2 className="font-bold text-3xl drop-shadow-xl">{title}</h2>
                 <ul className="flex items-center gap-x-3 mt-5 mb-8">
-                    <li className="py-2 px-4 border border-white rounded-md">
-                        Adventure
-                    </li>
-                    <li className="py-2 px-4 border border-white rounded-md">
-                        Adventure
-                    </li>
-                    <li className="py-2 px-4 border border-white rounded-md">
-                        Adventure
-                    </li>
+                    {new Array(3).fill().map((_, index) => (
+                        <li
+                            key={index}
+                            className="py-2 px-4 border border-white rounded-md"
+                        >
+                            Adventure
+                        </li>
+                    ))}
                 </ul>
 
                 <Button onClick={() => navigate(`movie/${id}`)}>

@@ -1,2 +1,1 @@
-// eslint-disable-next-line react-refresh/only-export-components
-export * from "./hooks";
+export { default as useDebounce } from "./useDebounce";

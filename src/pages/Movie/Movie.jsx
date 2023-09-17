@@ -4,7 +4,7 @@ import ReactPaginate from "react-paginate";
 
 import configs from "@/configs";
 import { MovieCart } from "@/components/Movie";
-import { useDebounce } from "@/hooks";
+import { useDebounce } from "@/hooks/useDebounce";
 
 const itemsPerPage = 20;
 const Movie = () => {
@@ -82,10 +82,7 @@ const Movie = () => {
                     <div className="grid grid-cols-4 gap-10">
                         {movies.length > 0 &&
                             movies.map((movie) => (
-                                <MovieCart
-                                    key={movie.id}
-                                    movie={movie}
-                                ></MovieCart>
+                                <MovieCart key={movie.id} movie={movie} />
                             ))}
                     </div>
                 )}

@@ -1,18 +1,17 @@
 import { Route, Routes } from "react-router-dom";
 import { publicRoutes } from "@/routes/routes";
-import { Fragment } from "react";
 
 const App = () => {
     return (
         <Routes>
             {publicRoutes.map((route) => {
-                let Layout = Fragment;
+                let Layout = <></>;
                 const Page = route.component;
 
                 if (route.layout) {
                     Layout = route.layout;
                 } else {
-                    Layout = Fragment;
+                    Layout = <></>;
                 }
 
                 return (
@@ -21,10 +20,10 @@ const App = () => {
                         path={route.path}
                         element={
                             <Layout>
-                                <Page></Page>
+                                <Page />
                             </Layout>
                         }
-                    ></Route>
+                    />
                 );
             })}
         </Routes>

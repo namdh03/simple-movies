@@ -66,11 +66,11 @@ const Detail = () => {
                         Casts
                     </h2>
 
-                    <MovieCredits></MovieCredits>
+                    <MovieCredits />
 
-                    <MovieClips></MovieClips>
+                    <MovieClips />
 
-                    <MovieSimilar></MovieSimilar>
+                    <MovieSimilar />
                 </div>
             </div>
         </section>

@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
+
 import configs from "@/configs";
 import MovieCart from "@/components/Movie/MovieCart";
 
@@ -31,7 +32,7 @@ const MovieSimilar = () => {
                                 key={movie.id}
                                 className="w-[300px] h-auto"
                             >
-                                <MovieCart movie={movie}></MovieCart>
+                                <MovieCart movie={movie} />
                             </SwiperSlide>
                         ))}
                 </Swiper>
