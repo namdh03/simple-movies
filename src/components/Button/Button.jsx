@@ -7,6 +7,7 @@ const Button = ({
     wFull = false,
     bgColor = "primary",
     type = "button",
+    ...props
 }) => {
     let bgClassName;
     switch (bgColor) {
@@ -29,6 +30,7 @@ const Button = ({
             className={`mt-auto flex items-center justify-center ${
                 wFull ? "w-full" : "w-auto"
             } h-12 leading-12 p-4 rounded-lg ${className} ${bgClassName}`}
+            {...props}
         >
             {children}
         </button>
