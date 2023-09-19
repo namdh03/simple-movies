@@ -31,7 +31,7 @@ const MovieCart = ({ movie }) => {
 
                 <Button
                     bgColor="secondary"
-                    onClick={() => navigate(`/movie/${id}`)}
+                    onClick={() => navigate(`/simple-movies/movie/${id}`)}
                 >
                     Watch Now
                 </Button>
