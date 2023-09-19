@@ -1,5 +1,7 @@
-const apiKey = import.meta.env.VITE_TMDB_API_KEY;
-const endpoint = "https://api.themoviedb.org/3";
+import publicRuntime from "./publicRuntime";
+
+const apiKey = publicRuntime.VITE_TMDB_API_KEY;
+const endpoint = publicRuntime.VITE_TMDB_END_POINT;
 const subDirectory = {
     movie: "movie",
     search: "search",
